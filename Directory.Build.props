@@ -1,7 +1,7 @@
 <Project>
 
   <!-- Import the Arcade SDK -->
-  <Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />
+  <!--<Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />-->
 
 
   <!-- Language Features -->
@@ -10,7 +10,9 @@
     <Nullable>enable</Nullable>
     <LangVersion>preview</LangVersion>
     <AnalysisLevel>preview</AnalysisLevel>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <!--<ImplicitUsings>enable</ImplicitUsings>-->
+
+    <TargetFramework Condition=" '$(TargetFramework)' == '' ">net472</TargetFramework>
   </PropertyGroup>
 
 

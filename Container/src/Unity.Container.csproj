@@ -9,7 +9,6 @@
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>package.snk</AssemblyOriginatorKeyFile>
 
-	  <TargetFramework Condition=" '$(TargetFramework)' == '' ">net6.0</TargetFramework>
 
 	</PropertyGroup>
 
@@ -17,36 +16,15 @@
 		<RootNamespace>Unity</RootNamespace>
 	</PropertyGroup>
 	
-	<!-- System.ValueTask --> 
 
 	<ItemGroup>
-		<PackageReference Condition="$(TargetFramework.StartsWith('net45'))       " Include="System.Threading.Tasks.Extensions" Version="4.5.*" />
-		<PackageReference Condition="$(TargetFramework.StartsWith('net46'))       " Include="System.Threading.Tasks.Extensions" Version="4.5.*" />
+		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.*" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.*" />
+		<PackageReference Include="System.Memory" Version="4.5.*" />
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="4.5.*" />
 	</ItemGroup>
 
-	<!-- Unsafe -->
-
-	<ItemGroup>
-		<PackageReference Condition="'$(TargetFramework)' == 'netcoreapp2.0'      " Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.*" />
-		<PackageReference Condition="'$(TargetFramework)' == 'netstandard2.1'     " Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.*" />
-	</ItemGroup>
-
-	<!-- System.Memory -->
-
-	<ItemGroup>
-		<PackageReference Condition="$(TargetFramework.StartsWith('net4'))        " Include="System.Memory" Version="4.5.*" />
-		<PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0'     " Include="System.Memory" Version="4.5.*" />
-		<PackageReference Condition="'$(TargetFramework)' == 'netcoreapp2.0'      " Include="System.Memory" Version="4.5.*" />
-	</ItemGroup>
-
-	<!-- C# 8.0 Compatibility -->
-
-	<ItemGroup>
-		<PackageReference Condition="'$(TargetFramework)' == 'net48'         " Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.*" />
-		<PackageReference Condition="'$(TargetFramework)' == 'net47'         " Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.*" />
-		<PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0'" Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.*" />
-		<PackageReference Condition="'$(TargetFramework)' == 'netcoreapp2.0' " Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.*" />
-	</ItemGroup>
 
 
 	<!-- Framework Compatibility -->
@@ -56,10 +34,6 @@
 		<Compile Condition="$(TargetFramework.StartsWith('netstandard'))           " Remove="Container\Exceptions\IllegalInjectionMethodException.Desktop.cs" />
 		<Compile Condition="$(TargetFramework.StartsWith('netcoreapp'))            " Remove="Container\Exceptions\ResolutionFailedException.Desktop.cs" />
 		<Compile Condition="$(TargetFramework.StartsWith('netstandard'))           " Remove="Container\Exceptions\ResolutionFailedException.Desktop.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
 	</ItemGroup>
 
 

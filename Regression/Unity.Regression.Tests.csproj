@@ -5,8 +5,6 @@
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<UnityLegacy>..\unity\source\Unity\Src\Unity.csproj</UnityLegacy>
 		<UnityContainer>..\Container\src\Unity.Container.csproj</UnityContainer>
-
-    <TargetFramework Condition=" '$(TargetFramework)' == '' ">net6.0</TargetFramework>
   </PropertyGroup>
 
 	<!--

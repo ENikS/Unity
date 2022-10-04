@@ -106,7 +106,15 @@ namespace Unity.BuiltIn
             {
                 ref var candidate = ref Data[position].Registration;
                 if (!ReferenceEquals(candidate._contract.Type, contract.Type) || candidate._contract.Name != null)
+                { 
                     position = Meta[position].Next;
+                    continue;
+                }
+
+                candidate = new ContainerRegistration(in contract, manager);
+                Revision += 1;
+                return;
+
             }
 
             // Add new registration

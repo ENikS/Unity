@@ -5,6 +5,9 @@ namespace Unity.Container
 {
     public partial struct PipelineContext
     {
+        private RequestInfo info;
+        private Contract contract;
+        private UnityContainer unityContainer;
         #region New Request
 
         public PipelineContext(UnityContainer container, ref Contract contract, RegistrationManager manager, ref RequestInfo request)
@@ -112,6 +115,13 @@ namespace Unity.Container
 
             Registration = parent.Registration;
             Container = parent.Container;
+        }
+
+        public PipelineContext(ref RequestInfo info, ref Contract contract, UnityContainer unityContainer) : this()
+        {
+            this.info = info;
+            this.contract = contract;
+            this.unityContainer = unityContainer;
         }
 
         #endregion

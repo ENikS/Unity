@@ -109,8 +109,8 @@ namespace Unity.Container
         #region Telemetry
 
         public PipelineAction<TAction> Start<TAction>(TAction action) where TAction : class
-            //            => new PipelineAction<TAction>(ref this, action);
-            => throw new NotImplementedException();
+            => new(ref this, action);
+            
 
         #endregion
 

@@ -39,7 +39,7 @@ namespace Container.Registrations
             container.Register(Registrations);
 
             var array = container.Registrations.ToArray();
-            Assert.AreEqual(5998, array.Length);
+            Assert.AreEqual(6351, array.Length);
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace Container.Registrations
             container.Register(Registrations);
 
             var array = container.Registrations.ToArray();
-            Assert.AreEqual(5998, array.Length);
+            Assert.AreEqual(6351, array.Length);
         }
 
     }
