@@ -157,6 +157,7 @@ namespace Unity.V4
                 new InjectionConstructor(typeof(string), typeof(string)));
         }
 
+        [Ignore]
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RegisterTypeThrowsIfTypeIsNull()

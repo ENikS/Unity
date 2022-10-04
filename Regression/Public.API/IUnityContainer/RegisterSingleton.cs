@@ -37,7 +37,7 @@ namespace Public.API
             Container.RegisterSingleton<Service>(Name, new InjectionConstructor());
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(Service) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(Service) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(Service), registration.RegisteredType);
             Assert.AreEqual(typeof(Service), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -51,7 +51,7 @@ namespace Public.API
             Container.RegisterSingleton<IService, Service>(new InjectionConstructor());
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name == null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(Service), registration.MappedToType);
             Assert.IsNull(registration.Name);
@@ -65,7 +65,7 @@ namespace Public.API
             Container.RegisterSingleton<IService, Service>(Name, new InjectionConstructor());
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(Service), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -97,7 +97,7 @@ namespace Public.API
             Container.RegisterSingleton(typeof(Service), Name, new InjectionConstructor());
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(Service) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(Service) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(Service), registration.RegisteredType);
             Assert.AreEqual(typeof(Service), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -111,7 +111,7 @@ namespace Public.API
             Container.RegisterSingleton(typeof(IService), typeof(Service), new InjectionConstructor());
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name == null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(Service), registration.MappedToType);
             Assert.IsNull(registration.Name);
@@ -125,7 +125,7 @@ namespace Public.API
             Container.RegisterSingleton(typeof(IService), typeof(Service), Name, new InjectionConstructor());
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(Service), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);

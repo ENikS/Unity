@@ -38,7 +38,7 @@ namespace Public.API
 
             // Act
             var registration = Container.Registrations
-                                        .FirstOrDefault(r => typeof(object) == r.RegisteredType);
+                                        .FirstOrDefault(r => typeof(object) == r.RegisteredType && r.Name != null);
 
             // Validate
             Assert.IsNotNull(registration);
@@ -72,7 +72,7 @@ namespace Public.API
 
             // Act
             var registration = Container.Registrations
-                                        .FirstOrDefault(r => typeof(object) == r.RegisteredType);
+                                        .FirstOrDefault(r => typeof(object) == r.RegisteredType && r.Name != null);
 
             // Validate
             Assert.IsNotNull(registration);

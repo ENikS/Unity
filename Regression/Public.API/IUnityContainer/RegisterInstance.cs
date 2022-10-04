@@ -25,7 +25,7 @@ namespace Public.API
             Container.RegisterInstance(typeFrom, Name, Instance, manager);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeFrom, registration.RegisteredType);
             Assert.AreEqual(Name, registration.Name);
             Assert.AreSame(manager, registration.LifetimeManager);
@@ -71,7 +71,7 @@ namespace Public.API
             Container.RegisterInstance<IService>(Name, Instance);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(Name, registration.Name);
             Assert.IsInstanceOfType(registration.LifetimeManager, typeof(ContainerControlledLifetimeManager));
@@ -87,7 +87,7 @@ namespace Public.API
             Container.RegisterInstance<IService>(Name, Instance, manager);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(Name, registration.Name);
             Assert.AreSame(manager, registration.LifetimeManager);
@@ -133,7 +133,7 @@ namespace Public.API
             Container.RegisterInstance(typeof(IService), Name, Instance);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(Name, registration.Name);
             Assert.IsInstanceOfType(registration.LifetimeManager, typeof(ContainerControlledLifetimeManager));
@@ -149,7 +149,7 @@ namespace Public.API
             Container.RegisterInstance(typeof(IService), Name, Instance, manager);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(Name, registration.Name);
             Assert.AreSame(manager, registration.LifetimeManager);

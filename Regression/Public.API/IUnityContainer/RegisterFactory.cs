@@ -23,10 +23,10 @@ namespace Public.API
             var manager = new TransientLifetimeManager();
 
             // Act
-            Container.RegisterFactory(typeof(IService), Name, FullFactory, manager);
+            _ = Container.RegisterFactory(typeof(IService), Name, FullFactory, manager);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -76,7 +76,7 @@ namespace Public.API
             Container.RegisterFactory<IService>(Name, ShortFactory);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -93,7 +93,7 @@ namespace Public.API
             Container.RegisterFactory<IService>(Name, ShortFactory, manager);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -143,7 +143,7 @@ namespace Public.API
             Container.RegisterFactory<IService>(Name, FullFactory);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -160,7 +160,7 @@ namespace Public.API
             Container.RegisterFactory<IService>(Name, FullFactory, manager);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -213,7 +213,7 @@ namespace Public.API
             Container.RegisterFactory(typeof(IService), Name, ShortFactory);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -230,7 +230,7 @@ namespace Public.API
             Container.RegisterFactory(typeof(IService), Name, ShortFactory, manager);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -280,7 +280,7 @@ namespace Public.API
             Container.RegisterFactory(typeof(IService), Name, FullFactory);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);
@@ -297,7 +297,7 @@ namespace Public.API
             Container.RegisterFactory(typeof(IService), Name, FullFactory, manager);
 
             // Validate
-            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType);
+            var registration = Container.Registrations.First(r => typeof(IService) == r.RegisteredType && r.Name != null);
             Assert.AreEqual(typeof(IService), registration.RegisteredType);
             Assert.AreEqual(typeof(IService), registration.MappedToType);
             Assert.AreEqual(Name, registration.Name);

@@ -7,7 +7,7 @@ namespace Unity.Container
     {
         private RequestInfo info;
         private Contract contract;
-        private UnityContainer unityContainer;
+        private UnityContainer? unityContainer;
         #region New Request
 
         public PipelineContext(UnityContainer container, ref Contract contract, RegistrationManager manager, ref RequestInfo request)
