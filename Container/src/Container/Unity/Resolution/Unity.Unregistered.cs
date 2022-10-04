@@ -11,23 +11,23 @@ namespace Unity
     public partial class UnityContainer
     {
 
-        private static object? ResolveUnregistered(ref Contract contract, ref PipelineContext parent)
+        private object? ResolveUnregistered(ref Contract contract, ref PipelineContext parent)
         {
-            return parent.Error("NotImplementedException");
-            //throw new NotImplementedException();
-            //// Check if resolver already exist
-            //var resolver = _policies[contract.Type];
+            //            return parent.Error("NotImplementedException");
 
-            //// Nothing found, requires build
-            //if (null == resolver)
-            //{
-            //    // Build new and try to save it
-            //    resolver = _policies.UnregisteredPipelineFactory(in contract);
-            //    resolver = _policies.GetOrAdd(contract.Type, resolver);
-            //}
+            // Check if resolver already exist
+            var resolver = _policies[contract.Type];
+
+            // Nothing found, requires build
+            if (null == resolver)
+            {
+                // Build new and try to save it
+                resolver = _policies.UnregisteredFactory(ref parent);
+                resolver = _policies.GetOrAdd(contract.Type, resolver);
+            }
 
             //var context = new ResolveContext(this, in contract, overrides);
-            //return resolver(ref context);
+            return resolver(ref parent);
         }
 
         /// <summary>
@@ -43,12 +43,21 @@ namespace Unity
         /// <returns>Requested object</returns>
         private object? ResolveUnregistered(ref Contract contract, ResolverOverride[] overrides)
         {
-            throw new NotImplementedException();
+            var info = new RequestInfo(overrides);
+            var context = new PipelineContext(ref info, ref contract, this);
 
-            //var info = new RequestInfo(overrides);
-            //var context = new PipelineContext(ref info, ref contract, this);
+            // Check if resolver already exist
+            var resolver = _policies[contract.Type];
 
-            //return _policies.ResolveUnregistered(ref context);
+            // Nothing found, requires build
+            if (null == resolver)
+            {
+                // Build new and try to save it
+                resolver = _policies.UnregisteredFactory(ref context);
+                resolver = _policies.GetOrAdd(contract.Type, resolver);
+            }
+
+            return resolver(ref context);
         }
 
         /// <summary>

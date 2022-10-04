@@ -1,5 +1,6 @@
 ﻿using System;
 using Unity.Container;
+using Unity.Lifetime;
 using Unity.Resolution;
 
 namespace Unity
@@ -17,7 +18,7 @@ namespace Unity
             //// Nothing found, requires build
             //if (null == resolver)
             //{
-            //    resolver = (ref ResolveContext c) => c.Existing;
+            //    resolver = (ref ResolveContext c) => c.Target;
             //    _policies[contract.Type] = resolver;
             //}
 
@@ -33,18 +34,21 @@ namespace Unity
         /// <returns>Requested array</returns>
         private object? ResolveArray(ref Contract contract, ResolverOverride[] overrides)
         {
-            throw new NotImplementedException();
-            //var context = new PipelineContext(this, in contract, overrides);
-            //var resolver = _policies[contract.Type];
+            var request = new RequestInfo(overrides);
+            // TODO: Replace with array manager
+            var context = new PipelineContext(this, ref contract, new TransientLifetimeManager(), ref request);
 
-            //// Nothing found, requires build
-            //if (null == resolver)
-            //{
-            //    resolver = (ref PipelineContext c) => c.Existing;
-            //    _policies[contract.Type] = resolver;
-            //}
 
-            //return resolver(ref context);
+            var resolver = _policies[contract.Type];
+
+            // Nothing found, requires build
+            if (null == resolver)
+            {
+                resolver = (ref PipelineContext c) => c.Target;
+                _policies[contract.Type] = resolver;
+            }
+
+            return resolver(ref context);
         }
 
         #endregion
