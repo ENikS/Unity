@@ -1,7 +1,6 @@
 ﻿using System;
 using Unity.BuiltIn;
 using Unity.Container;
-using Unity.Resolution;
 
 namespace Unity
 {
