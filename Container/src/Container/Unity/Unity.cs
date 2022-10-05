@@ -57,8 +57,8 @@ namespace Unity
             // Registration Scope
             _scope = new ContainerScope(capacity);
             _scope.SetInternal(new ContainerLifetimeManager(this), typeof(IUnityContainer), 
-                                                           typeof(IUnityContainerAsync), 
-                                                           typeof(IServiceProvider));
+                                                                   typeof(IUnityContainerAsync), 
+                                                                   typeof(IServiceProvider));
             BUILT_IN_CONTRACT_COUNT = _scope.Count;
 
             // Setup Built-In Components
